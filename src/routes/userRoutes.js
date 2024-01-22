@@ -12,6 +12,8 @@ const {
   resetPassword,
   googleFail,
   googleSignIn,
+  gettherapists,
+  gettherapist
 } = require("../controllers/userController");
 const { authenticate } = require("../middleware/authMiddleware");
 
@@ -56,6 +58,8 @@ router.get(
 
 router.get("/register/:code", verifyAccount);
 router.get("/me", authenticate, getUser);
+router.get("/me", authenticate, gettherapist);
+router.get("/me", authenticate, gettherapists);
 router.patch("/me", authenticate, updateUser);
 router.post("/forgotpassword", forgotPassword);
 router.put("/resetpassword/:resettoken", resetPassword);

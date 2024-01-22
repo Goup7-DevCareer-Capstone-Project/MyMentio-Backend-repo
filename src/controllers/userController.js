@@ -1,4 +1,5 @@
 const User = require("../models/userModel");
+const Therapist = require("../models/therapistModel");
 const crypto = require("crypto");
 const { validationResult } = require("express-validator");
 const { generateToken } = require("../middleware/authMiddleware");
@@ -210,6 +211,62 @@ const getUser = asyncHandler(async (req, res) => {
 });
 
 /**
+ * @desc Get therapist profile
+ * @route POST
+ * @route /api/user/me
+ * @access Private/User
+ */
+
+const gettherapist = asyncHandler(async (req, res) => {
+  try {
+    const therapist = await Therapist.findById(req.user.id);
+
+    if (!therapist) {
+      // res.status(404)
+      // throw new Error('User not found')
+      res.status(404).json({
+        success: false,
+        message: "therapist not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      therapist,
+    });
+  } catch (error) {
+    res.status(500);
+  }
+});
+
+/**
+ * @desc Get therapists profile
+ * @route POST
+ * @route /api/user/me
+ * @access Private/User
+ */
+
+const gettherapists = asyncHandler(async (req, res) => {
+  try {
+    const therapists = await Therapist.find();
+
+    if (!therapists || therapists.length === 0 ) {
+      // res.status(404)
+      // throw new Error('User not found')
+      res.status(404).json({
+        success: false,
+        message: "Therapists not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      therapists,
+    });
+  } catch (error) {
+    res.status(500);
+  }
+});
+
+/**
  * @desc Update a user
  * @route POST
  * @route /api/user/login
@@ -276,7 +333,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
         <h2>Hello ${user.firstName}</h2>
         <p>You are receiving this email because you (or someone else) has
          requested the reset of a password</p>
-          //  <a href='https://project-x-g8rg.onrender.com/api/user/resetpassword/${resetToken}'> Click here to reset your password</a> 
+          //  <a href='https://(insertprojectlink).onrender.com/api/user/resetpassword/${resetToken}'> Click here to reset your password</a> 
 
         </div>`;
 
@@ -369,4 +426,6 @@ module.exports = {
   userInfo,
   logoutUser,
   lol,
+  gettherapist,
+  gettherapists
 };

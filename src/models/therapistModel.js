@@ -72,8 +72,7 @@ const TherapistSchema = new mongoose.Schema(
         validator: function (time) {
           const validTimings = [
             "Mon-Wed-Fri: 11am-4pm",
-            "Tue-Thu-Sat: 4pm-9pm",
-            "Sunday: 10am-8pm",
+            "Tue-Thu: 12pm-3pm",
           ];
           return validTimings.includes(time);
         },
