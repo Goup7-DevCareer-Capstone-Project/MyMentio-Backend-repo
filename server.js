@@ -2,7 +2,9 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const connectDB = require("./src/database/db");
+const passportConfig = require('./src/middlewares/passportMiddleware')
 const passport = require("passport");
+const cookieSession = require('cookie-session');
 
 // Initialize Express
 const app = express();
@@ -15,8 +17,8 @@ connectDB();
 
 app.use(express.json());
 app.use(cors({
-  // origin: "http://localhost:8000",
-  origin: 'https://(ourproject).vercel.app', //add our project link
+  origin: "http://localhost:8000",
+  // origin: 'https://(ourproject).vercel.app', //add our project link
   methods: "GET,POST,PUT,DELETE",
   credentials: true,
 }))
@@ -24,6 +26,7 @@ app.use(express.urlencoded({extended: false}));
 
 app.use(passport.initialize());
 app.use(passport.session())
+app.use(cookieSession({name: "session", keys:["mymentio"], maxAge: 24*60*60*100})) 
     // app.use(
     //   session({
     //     secret: process.env.JWT_SECRET,

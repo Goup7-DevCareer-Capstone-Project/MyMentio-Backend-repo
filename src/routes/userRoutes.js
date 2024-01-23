@@ -15,7 +15,7 @@ const {
   gettherapists,
   gettherapist
 } = require("../controllers/userController");
-const { authenticate } = require("../middleware/authMiddleware");
+const { authenticate } = require("../middlewares/authMiddleware")
 
 // Login User Route
 router.post('/login', [

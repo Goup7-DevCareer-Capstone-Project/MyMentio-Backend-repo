@@ -1,6 +1,6 @@
 const Therapist = require("../models/therapistModel");
 const { validationResult } = require("express-validator");
-const { generateToken } = require("../middleware/authMiddleware");
+const { generateToken } = require("../middlewares/authMiddleware");
 const asyncHandler = require("express-async-handler");
 const { v4: uuidv4 } = require("uuid");
 const { sendEmail } = require("../utils/sendMail");
@@ -59,7 +59,7 @@ const registerTherapist = asyncHandler(async (req, res) => {
       bio,
       isGoogle: false,
       verificationCode: verifyToken,
-      cv: req.file.buffer,
+      // cv: req.file.buffer,
     });
 
     if (user) {
@@ -103,7 +103,7 @@ const verifyAccount = asyncHandler(async (req, res) => {
     } else {
       verifyTherapist.isVerified = true;
       await verifyTherapist.save();
-      res.redirect("https://project-xp.vercel.app/login"); //remember we are to replace this our own link same thing line 55
+      res.redirect("https://(projectname-insert).vercel.app/login"); //remember we are to replace this our own link same thing line 55
     }
   } catch (error) {
     res.status(500);
@@ -209,10 +209,10 @@ const updateTherapistProfile = asyncHandler(async (req, res) => {
     therapist.lastName = lastName || therapist.lastName;
     therapist.bio = bio || therapist.bio;
 
-    // Only update the CV if a new file is uploaded
-    if (req.file) {
-      therapist.cv = req.file.buffer;
-    }
+    // // Only update the CV if a new file is uploaded
+    // if (req.file) {
+    //   therapist.cv = req.file.buffer;
+    // }
 
     const updatedTherapist = await therapist.save();
 

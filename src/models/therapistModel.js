@@ -57,10 +57,10 @@ const TherapistSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    cv: {
-      type: String, // Cloudinary url
-      required: true,
-    },
+    // cv: {
+    //   type: String, // Cloudinary url
+    //   required: true,
+    // },
     experience: {
       type: Number,
       required: true,
