@@ -65,13 +65,13 @@ const registerTherapist = asyncHandler(async (req, res) => {
     if (user) {
       const text = `<h1>Email Confirmation</h1>
         <h2>Hello ${firstName}</h2>
-        <p>Verify your email address to complete the signup and login to your account to Project-x</p>
+        <p>Verify your email address to complete the signup and login to your account to My Mentio</p>
         <a href='https://project-x-g8rg.onrender.com/api/user/register/${therapist.verificationCode}'> Click here</a> 
 
         </div>`;
 
       await sendEmail({
-        email: user.email,
+        email: therapist.email,
         subject: "Email Verification",
         message: text,
       });
@@ -129,7 +129,7 @@ const loginTherapist = asyncHandler(async (req, res) => {
   // Check for user
   const therapist = await Therapist.findOne({ email }).select("+password");
 
-  if (!user) {
+  if (!therapist) {
     res.status(404).json({
       success: false,
       message: "Therapist not found",
@@ -241,7 +241,7 @@ const updateTherapistProfile = asyncHandler(async (req, res) => {
 const forgotPassword = asyncHandler(async (req, res) => {
   const therapist = await Therapist.findOne({ email: req.body.email });
 
-  if (!user) {
+  if (!therapist) {
     // res.status(404);
     // throw new Error('There is no user with that email');
     res.status(404).json({
@@ -260,7 +260,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
         <h2>Hello ${therapist.firstName}</h2>
         <p>You are receiving this email because you (or someone else) has
          requested the reset of a password</p>
-          //  <a href='https://our-projectname.onrender.com/api/user/resetpassword/${resetToken}'> Click here to reset your password</a> 
+          <a href='https://our-projectname.onrender.com/api/user/resetpassword/${resetToken}'> Click here to reset your password</a> 
 
         </div>`;
 

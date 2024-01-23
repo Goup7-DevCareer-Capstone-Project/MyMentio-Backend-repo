@@ -39,9 +39,13 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
-    mentalIllness: {
+    mentalHealthIssue : {
       type: String,
-      default: null,
+      default: true,
+    },
+    hobbies: {
+      type: String,
+      default: true,
     },
     language: {
       type: String,

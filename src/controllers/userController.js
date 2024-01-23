@@ -25,7 +25,7 @@ const registerUser = asyncHandler(async (req, res) => {
     //throw new Error(validationError.array()[0].msg)
   }
   try {
-    const { firstName, lastName, email, dateOfBirth, password, gender, bio } =
+    const { firstName, lastName, email, dateOfBirth, password, gender, bio, hobbies, mentalHealthIssue } =
       req.body;
 
     const userExist = await User.findOne({ email });
@@ -46,6 +46,8 @@ const registerUser = asyncHandler(async (req, res) => {
       password,
       gender,
       bio,
+      hobbies,
+      mentalHealthIssue,
       isGoogle: false,
       verificationCode: verifyToken,
     });
@@ -53,7 +55,7 @@ const registerUser = asyncHandler(async (req, res) => {
     if (user) {
       const text = `<h1>Email Confirmation</h1>
         <h2>Hello ${firstName}</h2>
-        <p>Verify your email address to complete the signup and login to your account to Project-x</p>
+        <p>Verify your email address to complete the signup and login to your account to My Mentio</p>
         <a href='https://project-x-g8rg.onrender.com/api/user/register/${user.verificationCode}'> Click here</a> 
 
         </div>`;
@@ -333,7 +335,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
         <h2>Hello ${user.firstName}</h2>
         <p>You are receiving this email because you (or someone else) has
          requested the reset of a password</p>
-          //  <a href='https://(insertprojectlink).onrender.com/api/user/resetpassword/${resetToken}'> Click here to reset your password</a> 
+          <a href='https://(insertprojectlink).onrender.com/api/user/resetpassword/${resetToken}'> Click here to reset your password</a> 
 
         </div>`;
 
