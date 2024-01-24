@@ -66,12 +66,11 @@ app.post('/schedule-meeting', async (req, res) => {
 });
 
 
-
-  app.get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).json({
       message: 'welcome to My Mentio api',
     })
-  })
+})
 
 //routes
 app.use('/api/user', userRoutes);

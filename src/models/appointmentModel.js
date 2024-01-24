@@ -1,4 +1,5 @@
-const { Schema, SchemaType, } = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const ApiError = require("../utils/ApiError");
 
