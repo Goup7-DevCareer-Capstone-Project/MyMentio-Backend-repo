@@ -6,6 +6,9 @@ const passportConfig = require('./src/middlewares/passportMiddleware')
 const passport = require("passport");
 const cookieSession = require('cookie-session');
 
+//Requesting the appointment controller -- ID_A_22
+const appointmentController = require('./src/controllers/AppointmentController'); //  path to your appointment controller file 
+
 // Initialize Express
 const app = express();
 const userRoutes = require('./src/routes/userRoutes');
@@ -48,6 +51,19 @@ app.use(cookieSession({name: "session", keys:["mymentio"], maxAge: 24*60*60*100}
     //     );
     //     next();
     //   });
+
+
+// Example usage for scheduling a meeting -- ID_A_22
+app.post('/schedule-meeting', async (req, res) => {
+  const { userId, therapistId, date, time } = req.body; // Retrieve the necessary parameters from the request body
+
+  try {
+    const meetingData = await appointmentController.scheduleMeeting(userId, therapistId, date, time);
+    res.json({ success: true, meetingData }); // this could be customize to a success page.
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to schedule the meeting' }); // this could be customize to a failure page.
+  }
+});
 
 
 
