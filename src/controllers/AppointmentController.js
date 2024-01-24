@@ -47,7 +47,7 @@ const scheduleMeeting = async (userId, therapistId, date, time) => {
     };
 
     // Initialize the Google Calendar API
-    const calendar = google.calendar({ version: 'v3', auth: YOUR_AUTHENTICATION_CLIENT });
+    const calendar = google.calendar({ version: 'v3', auth: YOUR_AUTHENTICATION_CLIENT });// thss has to be replaced with a valid authentication key
 
     // Create the event and conference data
     const res = await calendar.events.insert({
