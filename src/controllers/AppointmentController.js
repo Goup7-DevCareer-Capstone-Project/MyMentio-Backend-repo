@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { google } = require('googleapis');
 const { v4: uuidv4 } = require('uuid');
 
@@ -47,7 +48,7 @@ const scheduleMeeting = async (userId, therapistId, date, time) => {
     };
 
     // Initialize the Google Calendar API
-    const calendar = google.calendar({ version: 'v3', auth: YOUR_AUTHENTICATION_CLIENT });// thss has to be replaced with a valid authentication key
+    const calendar = google.calendar({ version: 'v3', auth: process.env.YOUR_AUTHENTICATION_CLIENT });//  google authentication key
 
     // Create the event and conference data
     const res = await calendar.events.insert({
