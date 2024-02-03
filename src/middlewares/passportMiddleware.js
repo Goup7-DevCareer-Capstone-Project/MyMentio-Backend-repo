@@ -1,8 +1,8 @@
+require("dotenv").config();
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const User = require("../models/userModel")
+const User = require("../models/userModel");
 const { generateToken } = require("./authMiddleware");
-
 
 passport.serializeUser((user, done) => {
   // console.log(user)
@@ -16,9 +16,9 @@ passport.deserializeUser(function (user, done) {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: GOOGLE_CLIENT_ID,
-      clientSecret: GOOGLE_CLIENT_SECRET,
-      callbackURL: CALLBACK_URL,
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.CALLBACK_URL,
     },
     (accessToken, refreshToken, profile, done) => {
       // Your authentication logic here
