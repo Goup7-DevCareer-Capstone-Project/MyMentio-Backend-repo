@@ -5,11 +5,13 @@ const uri = process.env.MONGO_DB_URL;
 // Creating connection function
 const connectDB = async () => {
   try {
-    mongoose.connect(uri);
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log("Connected to MongoDB");
   } catch (err) {
-    // if (err) return err.message;
-    console.log(err.message);
+    console.error(err.message);
   }
 };
 
