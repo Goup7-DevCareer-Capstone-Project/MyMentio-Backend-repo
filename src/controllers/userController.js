@@ -56,7 +56,7 @@ const registerUser = asyncHandler(async (req, res) => {
       const text = `<h1>Email Confirmation</h1>
         <h2>Hello ${firstName}</h2>
         <p>Verify your email address to complete the signup and login to your account to My Mentio</p>
-        <a href='https://project-x-g8rg.onrender.com/api/user/register/${user.verificationCode}'> Click here</a> 
+        <a href='link/api/user/register/${user.verificationCode}'> Click here</a> 
 
         </div>`;
 
@@ -93,7 +93,7 @@ const verifyAccount = asyncHandler(async (req, res) => {
     } else {
       verifyUser.isVerified = true;
       await verifyUser.save();
-      res.redirect("https://project-xp.vercel.app/login"); //remember we are to replace this our own link same thing line 55
+      res.redirect("link On Vercel"); //remember we are to replace this our own link same thing line 55
     }
   } catch (error) {
     res.status(500);
@@ -335,7 +335,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
         <h2>Hello ${user.firstName}</h2>
         <p>You are receiving this email because you (or someone else) has
          requested the reset of a password</p>
-          <a href='https://(insertprojectlink).onrender.com/api/user/resetpassword/${resetToken}'> Click here to reset your password</a> 
+          <a href='link/api/user/resetpassword/${resetToken}'> Click here to reset your password</a> 
 
         </div>`;
 
