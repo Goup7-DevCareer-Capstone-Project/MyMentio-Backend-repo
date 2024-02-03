@@ -16,13 +16,13 @@ passport.deserializeUser(function (user, done) {
 passport.use(
   new GoogleStrategy(
     {
-      callbackURL: process.env.CALLBACK_URL,
-      clientID: process.env.CLIENT_ID,
-      clientSecret: process.env.CLIENT_SECRET,
-      passReqToCallback: true,
+      clientID: GOOGLE_CLIENT_ID,
+      clientSecret: GOOGLE_CLIENT_SECRET,
+      callbackURL: CALLBACK_URL,
     },
-    function (request, accessToken, refreshToken, profile, done) {
-      // console.log(profile)
+    (accessToken, refreshToken, profile, done) => {
+      // Your authentication logic here
+      // ...
       return done(null, profile);
     }
   )
