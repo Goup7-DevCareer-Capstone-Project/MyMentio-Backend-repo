@@ -66,7 +66,7 @@ const registerTherapist = asyncHandler(async (req, res) => {
       const text = `<h1>Email Confirmation</h1>
         <h2>Hello ${firstName}</h2>
         <p>Verify your email address to complete the signup and login to your account to My Mentio</p>
-        <a href='link/api/user/register/${therapist.verificationCode}'> Click here</a> 
+        <a href='https://mymentio-backend.onrender.com/api/user/register/${therapist.verificationCode}'> Click here</a> 
 
         </div>`;
 
@@ -260,7 +260,7 @@ const forgotPassword = asyncHandler(async (req, res) => {
         <h2>Hello ${therapist.firstName}</h2>
         <p>You are receiving this email because you (or someone else) has
          requested the reset of a password</p>
-          <a href='link/api/user/resetpassword/${resetToken}'> Click here to reset your password</a> 
+          <a href='https://mymentio-backend.onrender.com/api/user/resetpassword/${resetToken}'> Click here to reset your password</a> 
 
         </div>`;
 
